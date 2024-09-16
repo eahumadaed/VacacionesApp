@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Confirmar Eliminación</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="close()">Cerrar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-item>
+      <p>¿Estás seguro de que deseas eliminar {{ destino.name }}?</p>
+    </ion-item>
+  
+    <ion-button expand="block" color="danger" (click)="confirmDelete()">Eliminar</ion-button>
+  </ion-content>
+  

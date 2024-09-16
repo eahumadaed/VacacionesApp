@@ -1,20 +1,59 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Destinos Vacacionales</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-searchbar [debounce]="1000" [(ngModel)]="searchTerm" (ionInput)="filterDestinos()"></ion-searchbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list *ngIf="searchResultsApi.length > 0">
+    <ion-item *ngFor="let result of searchResultsApi">
+      <ion-thumbnail slot="start">
+        <img [src]="result.image" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ result.name }}</h2>
+        <p>{{ result.country }}</p>
+      </ion-label>
+
+      <!-- Botón para abrir Google Maps -->
+      <ion-button fill="clear" (click)="openInGoogleMaps(result.lat, result.lon)">
+        <ion-icon slot="icon-only" name="navigate-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" (click)="addDestinoFromApi(result)">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="filteredDestinos.length > 0">
+    <ion-item *ngFor="let destino of filteredDestinos">
+      <ion-thumbnail slot="start">
+        <img [src]="destino.image" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ destino.name }}</h2>
+        <p><strong>{{ destino.country }}</strong></p>
+      </ion-label>
+
+      <ion-button fill="clear" (click)="openInGoogleMaps(destino.lat, destino.lon)">
+        <ion-icon slot="icon-only" name="navigate-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" (click)="openTripCostModal(destino)">
+        <ion-icon slot="icon-only" name="airplane-outline"></ion-icon>
+        {{ formatPrice(destino.price) }}
+      </ion-button>
+
+      <ion-button fill="clear" (click)="changeImage(destino)">
+        <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" color="danger" (click)="confirmDelete(destino)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

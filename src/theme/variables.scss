@@ -1,2 +1,23 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+// src/theme/variables.scss
+
+// Colores base de la aplicación
+:root {
+    --ion-color-primary: #3880ff;    /* Color primario */
+    --ion-color-secondary: #0cd1e8;  /* Color secundario */
+    --ion-color-tertiary: #7044ff;
+  
+    --ion-color-success: #10dc60;
+    --ion-color-warning: #ffce00;
+    --ion-color-danger: #f04141;
+    --ion-color-dark: #222428;      /* Color oscuro (cambiar a blanco) */
+    --ion-color-medium: #989aa2;
+    --ion-color-light: #f4f5f8;     /* Color claro */
+  
+    /* Cambiar fondo a blanco */
+    --ion-background-color: #ffffff;  /* Fondo principal de la aplicación */
+  
+    /* Texto en blanco o colores claros */
+    --ion-text-color: #000000;        /* Color de texto principal */
+    --ion-toolbar-background-color: #ffffff; /* Color de fondo de la barra de herramientas (toolbar) */
+  }
+  

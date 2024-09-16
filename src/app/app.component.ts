@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,11 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private storage: Storage) {}
+  constructor() {
+    this.initializeApp();
+  }
 
-  async ngOnInit() {
-    // Inicializa el almacenamiento
-    await this.storage.create();
+  initializeApp() {
+    SplashScreen.hide();
   }
 }
